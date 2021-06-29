@@ -21,14 +21,14 @@ import { Link } from "react-router-dom";
 import {
   Button,
   Collapse,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
+  // DropdownToggle,
+  // DropdownMenu,
+  // DropdownItem,
   UncontrolledDropdown,
   NavbarBrand,
   Navbar,
   NavItem,
-  NavLink,
+  // NavLink,
   Nav,
   Container,
   Row,
@@ -69,18 +69,18 @@ export default function IndexNavbar() {
   const onCollapseExited = () => {
     setCollapseOut("");
   };
-  const scrollToDownload = () => {
-    document
-      .getElementById("download-section")
-      .scrollIntoView({ behavior: "smooth" });
-  };
+  // const scrollToDownload = () => {
+  //   document
+  //     .getElementById("download-section")
+  //     .scrollIntoView({ behavior: "smooth" });
+  // };
   return (
     <Navbar className={"fixed-top " + color} color-on-scroll="100" expand="lg">
       <Container>
         <div className="navbar-translate">
           <NavbarBrand to="/" tag={Link} id="navbar-brand">
-            <span>BLK• </span>
-            Design System React
+            <span>De Governance • </span>
+            Decentralized Government
           </NavbarBrand>
           <UncontrolledTooltip placement="bottom" target="navbar-brand">
             Designed and Coded by Creative Tim
@@ -122,7 +122,7 @@ export default function IndexNavbar() {
           </div>
           <Nav navbar>
             <NavItem className="p-0">
-              <NavLink
+              {/* <NavLink
                 data-placement="bottom"
                 href="https://twitter.com/CreativeTim"
                 rel="noopener noreferrer"
@@ -131,10 +131,10 @@ export default function IndexNavbar() {
               >
                 <i className="fab fa-twitter" />
                 <p className="d-lg-none d-xl-none">Twitter</p>
-              </NavLink>
+              </NavLink> */}
             </NavItem>
             <NavItem className="p-0">
-              <NavLink
+              {/* <NavLink
                 data-placement="bottom"
                 href="https://www.facebook.com/CreativeTim"
                 rel="noopener noreferrer"
@@ -143,10 +143,10 @@ export default function IndexNavbar() {
               >
                 <i className="fab fa-facebook-square" />
                 <p className="d-lg-none d-xl-none">Facebook</p>
-              </NavLink>
+              </NavLink> */}
             </NavItem>
             <NavItem className="p-0">
-              <NavLink
+              {/* <NavLink
                 data-placement="bottom"
                 href="https://www.instagram.com/CreativeTimOfficial"
                 rel="noopener noreferrer"
@@ -155,10 +155,10 @@ export default function IndexNavbar() {
               >
                 <i className="fab fa-instagram" />
                 <p className="d-lg-none d-xl-none">Instagram</p>
-              </NavLink>
+              </NavLink> */}
             </NavItem>
             <UncontrolledDropdown nav>
-              <DropdownToggle
+              {/* <DropdownToggle
                 caret
                 color="default"
                 data-toggle="dropdown"
@@ -168,8 +168,8 @@ export default function IndexNavbar() {
               >
                 <i className="fa fa-cogs d-lg-none d-xl-none" />
                 Getting started
-              </DropdownToggle>
-              <DropdownMenu className="dropdown-with-icons">
+              </DropdownToggle> */}
+              {/* <DropdownMenu className="dropdown-with-icons">
                 <DropdownItem href="https://demos.creative-tim.com/blk-design-system-react/#/documentation/overview">
                   <i className="tim-icons icon-paper" />
                   Documentation
@@ -186,26 +186,26 @@ export default function IndexNavbar() {
                   <i className="tim-icons icon-single-02" />
                   Profile Page
                 </DropdownItem>
-              </DropdownMenu>
+              </DropdownMenu> */}
             </UncontrolledDropdown>
             <NavItem>
               <Button
                 className="nav-link d-none d-lg-block"
                 color="primary"
                 target="_blank"
-                href="https://www.creative-tim.com/product/blk-design-system-pro-react?ref=bdsr-user-archive-index-navbar-upgrade-pro"
+                href="#"
               >
-                <i className="tim-icons icon-spaceship" /> Upgrade to PRO
+                <i className="tim-icons icon-spaceship" /> Connect to Metamask
               </Button>
             </NavItem>
             <NavItem>
-              <Button
+              {/* <Button
                 className="nav-link d-none d-lg-block"
                 color="default"
                 onClick={scrollToDownload}
               >
                 <i className="tim-icons icon-cloud-download-93" /> Download
-              </Button>
+              </Button> */}
             </NavItem>
           </Nav>
         </Collapse>

@@ -17,27 +17,29 @@
 */
 import React from "react";
 // react plugin used to create charts
-import { Line } from "react-chartjs-2";
+// import { Line } from "react-chartjs-2";
 // reactstrap components
 import {
-  Button,
+  // Button,
   Card,
-  CardHeader,
+  // CardHeader,
   CardBody,
-  CardFooter,
+  // CardFooter,
   CardTitle,
-  ListGroupItem,
-  ListGroup,
+  // ListGroupItem,
+  // ListGroup,
   Container,
   Row,
   Col,
+  Table,
 } from "reactstrap";
 
 // core components
-import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
-import Footer from "components/Footer/Footer.js";
+// import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
+import IndexNavbar from "components/Navbars/IndexNavbar";
+// import Footer from "components/Footer/Footer.js";
 
-import bigChartData from "variables/charts.js";
+// import bigChartData from "variables/charts.js";
 
 export default function LandingPage() {
   React.useEffect(() => {
@@ -46,12 +48,13 @@ export default function LandingPage() {
     return function cleanup() {
       document.body.classList.toggle("landing-page");
     };
-  },[]);
+  }, []);
   return (
     <>
-      <ExamplesNavbar />
+      {/* <ExamplesNavbar /> */}
+      <IndexNavbar></IndexNavbar>
       <div className="wrapper">
-        <div className="page-header">
+        {/* <div className="page-header">
           <img
             alt="..."
             className="path"
@@ -146,7 +149,7 @@ export default function LandingPage() {
               </Col>
             </Row>
           </div>
-        </div>
+        </div> */}
         <section className="section section-lg">
           <section className="section">
             <img
@@ -162,23 +165,23 @@ export default function LandingPage() {
                       <Card className="card-stats">
                         <CardBody>
                           <Row>
-                            <Col md="4" xs="5">
+                            {/* <Col md="4" xs="5">
                               <div className="icon-big text-center icon-warning">
                                 <i className="tim-icons icon-trophy text-warning" />
                               </div>
-                            </Col>
-                            <Col md="8" xs="7">
+                            </Col> */}
+                            <Col md="11" xs="7">
                               <div className="numbers">
-                                <CardTitle tag="p">3,237</CardTitle>
+                                <CardTitle tag="p">Available FT</CardTitle>
                                 <p />
-                                <p className="card-category">Awards</p>
+                                {/* <p className="card-category">Available Fungible Tokens</p> */}
                               </div>
                             </Col>
                           </Row>
                         </CardBody>
                       </Card>
                     </Col>
-                    <Col className="px-2 py-2" lg="6" sm="12">
+                    {/* <Col className="px-2 py-2" lg="6" sm="12">
                       <Card className="card-stats upper bg-default">
                         <CardBody>
                           <Row>
@@ -197,30 +200,30 @@ export default function LandingPage() {
                           </Row>
                         </CardBody>
                       </Card>
-                    </Col>
+                    </Col> */}
                   </Row>
                   <Row>
-                    <Col className="px-2 py-2" lg="6" sm="12">
+                    <Col className="px-2 py-2" lg="8" sm="12">
                       <Card className="card-stats">
                         <CardBody>
                           <Row>
                             <Col md="4" xs="5">
                               <div className="icon-big text-center icon-warning">
-                                <i className="tim-icons icon-gift-2 text-info" />
+                                <i className="tim-icons icon-coins text-white" />
                               </div>
                             </Col>
                             <Col md="8" xs="7">
                               <div className="numbers">
-                                <CardTitle tag="p">593</CardTitle>
+                                <CardTitle tag="p">5980834</CardTitle>
                                 <p />
-                                <p className="card-category">Presents</p>
+                                <p className="card-category">Available</p>
                               </div>
                             </Col>
                           </Row>
                         </CardBody>
                       </Card>
                     </Col>
-                    <Col className="px-2 py-2" lg="6" sm="12">
+                    {/* <Col className="px-2 py-2" lg="6" sm="12">
                       <Card className="card-stats">
                         <CardBody>
                           <Row>
@@ -239,11 +242,11 @@ export default function LandingPage() {
                           </Row>
                         </CardBody>
                       </Card>
-                    </Col>
+                    </Col> */}
                   </Row>
                 </Col>
-                <Col md="6">
-                  <div className="pl-md-5">
+                <Col className="mt-lg-5" md="5">
+                  {/* <div className="pl-md-5">
                     <h1>
                       Large <br />
                       Achivements
@@ -268,7 +271,42 @@ export default function LandingPage() {
                       Show all{" "}
                       <i className="tim-icons icon-minimal-right text-info" />
                     </a>
-                  </div>
+                  </div> */}
+                  <Table>
+                    <caption className="text-center">List of NFT & FT</caption>
+                    <thead>
+                      <tr>
+                        <th className="text-center">#</th>
+                        <th>Type</th>
+                        <th>Name</th>
+                        <th className="text-center">Date</th>
+                        <th className="text-right">Value</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td className="text-center">1</td>
+                        <td>Padma Bridge</td>
+                        <td>NFT</td>
+                        <td className="text-center">2018</td>
+                        <td className="text-right"> 99,225</td>
+                      </tr>
+                      <tr>
+                        <td className="text-center">2</td>
+                        <td>Bank Transfer</td>
+                        <td>FT</td>
+                        <td className="text-center">2021</td>
+                        <td className="text-right">5,201</td>
+                      </tr>
+                      <tr>
+                        <td className="text-center">3</td>
+                        <td>Land Deed(Dhanmondi)</td>
+                        <td>NFT</td>
+                        <td className="text-center">2015</td>
+                        <td className="text-right">22043</td>
+                      </tr>
+                    </tbody>
+                  </Table>
                 </Col>
               </Row>
             </Container>
@@ -291,7 +329,7 @@ export default function LandingPage() {
             src={require("assets/img/path2.png").default}
           />
           <Container>
-            <Row className="justify-content-center">
+            {/* <Row className="justify-content-center">
               <Col lg="12">
                 <h1 className="text-center">Your best benefit</h1>
                 <Row className="row-grid justify-content-center">
@@ -339,7 +377,7 @@ export default function LandingPage() {
                   </Col>
                 </Row>
               </Col>
-            </Row>
+            </Row> */}
           </Container>
         </section>
         <section className="section section-lg section-safe">
@@ -349,7 +387,44 @@ export default function LandingPage() {
             src={require("assets/img/path5.png").default}
           />
           <Container>
-            <Row className="row-grid justify-content-between">
+          <div className="content-center">
+          <Table>
+                    <caption className="text-center">Table of Transactions</caption>
+                    <thead>
+                      <tr>
+                        <th className="text-center">#</th>
+                        <th>Type</th>
+                        <th>Name</th>
+                        <th className="text-center">Date</th>
+                        <th className="text-right">Value</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td className="text-center">1</td>
+                        <td>Padma Bridge</td>
+                        <td>NFT</td>
+                        <td className="text-center">2018</td>
+                        <td className="text-right"> 99,225</td>
+                      </tr>
+                      <tr>
+                        <td className="text-center">2</td>
+                        <td>Bank Transfer</td>
+                        <td>FT</td>
+                        <td className="text-center">2021</td>
+                        <td className="text-right">5,201</td>
+                      </tr>
+                      <tr>
+                        <td className="text-center">3</td>
+                        <td>Land Deed(Dhanmondi)</td>
+                        <td>NFT</td>
+                        <td className="text-center">2015</td>
+                        <td className="text-right">22043</td>
+                      </tr>
+                    </tbody>
+                  </Table>
+          </div>
+            {/* <Row className="row-grid justify-content-between">
               <Col md="5">
                 <img
                   alt="..."
@@ -432,10 +507,10 @@ export default function LandingPage() {
                   </ul>
                 </div>
               </Col>
-            </Row>
+            </Row> */}
           </Container>
         </section>
-        <section className="section section-lg">
+        {/* <section className="section section-lg">
           <img
             alt="..."
             className="path"
@@ -467,8 +542,8 @@ export default function LandingPage() {
               </CardBody>
             </Card>
           </Col>
-        </section>
-        <section className="section section-lg section-coins">
+        </section> */}
+        {/* <section className="section section-lg section-coins">
           <img
             alt="..."
             className="path"
@@ -583,8 +658,8 @@ export default function LandingPage() {
               </Col>
             </Row>
           </Container>
-        </section>
-        <Footer />
+        </section> */}
+        {/* <Footer /> */}
       </div>
     </>
   );
