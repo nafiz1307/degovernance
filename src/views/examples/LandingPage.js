@@ -182,9 +182,9 @@ export default function LandingPage() {
                             </Col>
                             <Col md="8" xs="7">
                               <div className="numbers">
-                              <CardTitle tag="p">{account}</CardTitle>
+                              <CardTitle tag="p">{account}</CardTitle><br></br>
                                 <p />
-                                <p className="card-category">Connected Account</p>
+                                <p className="card-category" >Available Balance : 2344553</p>
                               </div>
                             </Col>
                           </Row>
@@ -233,7 +233,7 @@ export default function LandingPage() {
               <Row className="row-grid justify-content-between">
                 <Col>
                   <Row>
-                    <Col className="px-2 py-2" lg="8" sm="12">
+                    {/* <Col className="px-2 py-2" lg="8" sm="12">
                       <Card className="card-stats">
                         <CardBody>
                           <Row>
@@ -252,7 +252,7 @@ export default function LandingPage() {
                           </Row>
                         </CardBody>
                       </Card>
-                    </Col>
+                    </Col> */}
                     
                   </Row>
                 </Col>
