@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, {useContext, useRef, useState} from "react";
 // react plugin used to create charts
 // import { Line } from "react-chartjs-2";
 // reactstrap components
@@ -37,18 +37,30 @@ import {
 // core components
 // import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import IndexNavbar from "components/Navbars/IndexNavbar";
+import { Web3Context } from "Context/Web3Context";
 // import Footer from "components/Footer/Footer.js";
 
 // import bigChartData from "variables/charts.js";
+// import Web3Context
+
 
 export default function LandingPage() {
+  const [account, setAccount] = useState(null)
+  const {web3Context, setWeb3Context} = useContext(Web3Context)
   React.useEffect(() => {
+    // web3.eth.getAccounts().then(accounts => setAccount(accounts[0]))
     document.body.classList.toggle("landing-page");
     // Specify how to clean up after this effect:
     return function cleanup() {
       document.body.classList.toggle("landing-page");
     };
   }, []);
+  React.useEffect(() => {
+    if(web3Context.eth){
+      let web3 = web3Context
+      web3.eth.getAccounts().then(accounts => setAccount(accounts[0]))
+    }
+  },[web3Context])
   return (
     <>
       {/* <ExamplesNavbar /> */}
@@ -172,7 +184,8 @@ export default function LandingPage() {
                             </Col> */}
                             <Col md="11" xs="7">
                               <div className="numbers">
-                                <CardTitle tag="p">Available FT</CardTitle>
+                                {console.log(web3Context)}
+                                 <CardTitle tag="p">{account}</CardTitle>
                                 <p />
                                 {/* <p className="card-category">Available Fungible Tokens</p> */}
                               </div>

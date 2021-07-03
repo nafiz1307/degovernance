@@ -15,8 +15,9 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, {useContext, useState} from "react";
 import { Link } from "react-router-dom";
+import Web3 from 'web3';
 // reactstrap components
 import {
   Button,
@@ -35,17 +36,36 @@ import {
   Col,
   UncontrolledTooltip,
 } from "reactstrap";
+import { Web3Context } from "Context/Web3Context";
 
 export default function IndexNavbar() {
+  const {web3Context, setWeb3Context} = useContext(Web3Context)
+  const [account, setAccount] = useState(null)
+  const [balance, setBalance] = useState(null)
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   const [collapseOut, setCollapseOut] = React.useState("");
   const [color, setColor] = React.useState("navbar-transparent");
+  let {ethereum, web3} = window
+  ethereum.on('accountsChanged', (accounts) => {
+    console.log(accounts)
+    setAccount(accounts[0])
+  })
   React.useEffect(() => {
     window.addEventListener("scroll", changeColor);
     return function cleanup() {
       window.removeEventListener("scroll", changeColor);
     };
   },[]);
+  const connectMetamask = () => {
+    ethereum.request({ method: 'eth_requestAccounts' }).then(accounts => {
+      setAccount(accounts[0])
+      web3 = new Web3(ethereum)
+      setWeb3Context(web3)
+      web3.eth.getAccounts().then(accounts => web3.eth.getBalance(accounts[0]).then(balance => setBalance(balance)))
+      console.log(accounts)
+    });
+  }
+  
   const changeColor = () => {
     if (
       document.documentElement.scrollTop > 99 ||
@@ -189,14 +209,25 @@ export default function IndexNavbar() {
               </DropdownMenu> */}
             </UncontrolledDropdown>
             <NavItem>
-              <Button
+              {
+                !account && <Button
                 className="nav-link d-none d-lg-block"
                 color="primary"
                 target="_blank"
-                href="#"
+                onClick = {connectMetamask}
               >
                 <i className="tim-icons icon-spaceship" /> Connect to Metamask
               </Button>
+              }
+              {
+                account && <Button
+                className="nav-link d-none d-lg-block"
+                color="primary"
+                target="_blank"
+              >
+                <i className="tim-icons icon-spaceship" /> Connected to Metamask
+              </Button>
+              }
             </NavItem>
             <NavItem>
               {/* <Button
