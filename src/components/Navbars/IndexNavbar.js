@@ -103,7 +103,7 @@ export default function IndexNavbar() {
             Decentralized Government
           </NavbarBrand>
           <UncontrolledTooltip placement="bottom" target="navbar-brand">
-            Designed and Coded by Creative Tim
+            Designed and Coded by Nafiz Zaman
           </UncontrolledTooltip>
           <button
             aria-expanded={collapseOpen}
