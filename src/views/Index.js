@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, {useRef, useState} from "react";
 
 // core components
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
@@ -35,8 +35,11 @@ import PageHeader from "components/PageHeader/PageHeader.js";
 // import Examples from "views/IndexSections/Examples.js";
 // import Download from "views/IndexSections/Download.js";
 import LandingPage from "views/examples/LandingPage";
+import { Web3Context } from "Context/Web3Context";
+
 
 export default function Index() {
+  const [web3Context, setWeb3Context] = useState({})
   React.useEffect(() => {
     document.body.classList.toggle("index-page");
     // Specify how to clean up after this effect:
@@ -46,7 +49,9 @@ export default function Index() {
   },[]);
   return (
     <>
+      <Web3Context.Provider value = {{web3Context, setWeb3Context}}>
       <IndexNavbar />
+      
       <div className="wrapper">
         <PageHeader />
         <div className="main">
@@ -65,6 +70,7 @@ export default function Index() {
         </div>
         {/* <Footer /> */}
       </div>
+      </Web3Context.Provider>
     </>
   );
 }
