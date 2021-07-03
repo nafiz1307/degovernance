@@ -171,7 +171,7 @@ export default function LandingPage() {
             />
             <Container>
             <Row className="row-grid justify-content-between">
-                    <Col className="px-2 py-2" lg="6" sm="10">
+                    <Col className="px-2 py-2" lg="7" sm="10">
                       <Card className="card-stats">
                         <CardBody>
                           <Row>
