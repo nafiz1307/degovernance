@@ -15,12 +15,12 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, {useContext, useRef, useState} from "react";
+import React, {useContext,  useState} from "react";
 // react plugin used to create charts
 // import { Line } from "react-chartjs-2";
 // reactstrap components
 import {
-  // Button,
+  Button,
   Card,
   // CardHeader,
   CardBody,
@@ -37,16 +37,24 @@ import {
 // core components
 // import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import IndexNavbar from "components/Navbars/IndexNavbar";
-import { Web3Context } from "Context/Web3Context";
 // import Footer from "components/Footer/Footer.js";
 
 // import bigChartData from "variables/charts.js";
-// import Web3Context
 
+
+// import Web3Context for the web3 instance
+import { Web3Context } from "Context/Web3Context";
+// import axios for http requests
+import axios from "axios";
+import { apiEndpoint } from "config";
 
 export default function LandingPage() {
+  const [fungibleTokenContractAbi, setFungibleContractAbi] = useState()
+  const [tokenAddress, setTokenAddress] = useState()
+  const [balance, setBalance] = useState(0)
+  const [tokens, setTokens] = useState([])
   const [account, setAccount] = useState(null)
-  const {web3Context, setWeb3Context} = useContext(Web3Context)
+  const {web3Context} = useContext(Web3Context)
   React.useEffect(() => {
     // web3.eth.getAccounts().then(accounts => setAccount(accounts[0]))
     document.body.classList.toggle("landing-page");
@@ -59,8 +67,29 @@ export default function LandingPage() {
     if(web3Context.eth){
       let web3 = web3Context
       web3.eth.getAccounts().then(accounts => setAccount(accounts[0]))
+      
     }
   },[web3Context])
+
+  React.useEffect(() => {
+    axios.get(`${apiEndpoint}/token`).then(response =>{
+      setTokens(response.data)
+      console.log(response.data)
+    })
+    .catch(console.log)
+  },[])
+
+
+  const getTokenBalance = (e) => {
+    let {abi, address} = JSON.parse(e.target.value)
+    if(web3Context.eth){
+      let web3 = web3Context
+      let contractInstance = new web3.eth.Contract(abi, address)
+      contractInstance.methods.balanceOf(account).call({from: account}, (error, result) => {
+        setBalance(result)
+      })
+    }
+  }
   return (
     <>
       {/* <ExamplesNavbar /> */}
@@ -170,53 +199,68 @@ export default function LandingPage() {
               src={require("assets/img/path4.png").default}
             />
             <Container>
-              <Row className="row-grid justify-content-between">
-                <Col className="mt-lg-5" md="5">
-                  <Row>
-                    <Col className="px-2 py-2" lg="6" sm="12">
+            <Row className="row-grid justify-content-between">
+                    <Col className="px-2 py-2" lg="7" sm="10">
                       <Card className="card-stats">
-                        <CardBody>
-                          <Row>
-                            {/* <Col md="4" xs="5">
-                              <div className="icon-big text-center icon-warning">
-                                <i className="tim-icons icon-trophy text-warning" />
-                              </div>
-                            </Col> */}
-                            <Col md="11" xs="7">
-                              <div className="numbers">
-                                {console.log(web3Context)}
-                                 <CardTitle tag="p">{account}</CardTitle>
-                                <p />
-                                {/* <p className="card-category">Available Fungible Tokens</p> */}
-                              </div>
-                            </Col>
-                          </Row>
-                        </CardBody>
-                      </Card>
-                    </Col>
-                    {/* <Col className="px-2 py-2" lg="6" sm="12">
-                      <Card className="card-stats upper bg-default">
                         <CardBody>
                           <Row>
                             <Col md="4" xs="5">
                               <div className="icon-big text-center icon-warning">
-                                <i className="tim-icons icon-coins text-white" />
+                                <i className="tim-icons icon-minimal-right text-info" />
                               </div>
                             </Col>
                             <Col md="8" xs="7">
                               <div className="numbers">
-                                <CardTitle tag="p">3,653</CardTitle>
+                              <p className="card-category" >Connected Account</p>
+                              <CardTitle tag="p">{account}</CardTitle><br></br>
                                 <p />
-                                <p className="card-category">Commits</p>
+                                <p className="card-category" >Available Balance : {balance}</p>
                               </div>
                             </Col>
                           </Row>
                         </CardBody>
                       </Card>
-                    </Col> */}
+
+                    </Col>
+                   
+                    <Col className="px-2 py-2" lg="4" sm="12">
+                    
+                    <Table>
+                      <thead>
+                        <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th className="text-center">Address</th>
+                        <th className="text-center">Button</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {
+                        tokens.map((token, index) =><tr>
+                          <td className="text-center">{index +1}</td>
+                          <td>{token.name}</td>
+                          <td>{token.tokenType}</td>
+                          <td className="text-center">{token.address}</td>
+                          <td> <Button
+                className="nav-link d-none d-lg-block"
+                color="primary"
+                target="_blank"
+                value = {JSON.stringify(token)}
+                onClick = {getTokenBalance}
+              >
+               Get Balance
+              </Button></td>
+                        </tr>)
+                      }
+                    </tbody>
+                  </Table>
+                    </Col>
+
                   </Row>
+              <Row className="row-grid justify-content-between">
+                <Col>
                   <Row>
-                    <Col className="px-2 py-2" lg="8" sm="12">
+                    {/* <Col className="px-2 py-2" lg="8" sm="12">
                       <Card className="card-stats">
                         <CardBody>
                           <Row>
@@ -235,27 +279,8 @@ export default function LandingPage() {
                           </Row>
                         </CardBody>
                       </Card>
-                    </Col>
-                    {/* <Col className="px-2 py-2" lg="6" sm="12">
-                      <Card className="card-stats">
-                        <CardBody>
-                          <Row>
-                            <Col md="4" xs="5">
-                              <div className="icon-big text-center icon-warning">
-                                <i className="tim-icons icon-credit-card text-success" />
-                              </div>
-                            </Col>
-                            <Col md="8" xs="7">
-                              <div className="numbers">
-                                <CardTitle tag="p">10,783</CardTitle>
-                                <p />
-                                <p className="card-category">Forks</p>
-                              </div>
-                            </Col>
-                          </Row>
-                        </CardBody>
-                      </Card>
                     </Col> */}
+                    
                   </Row>
                 </Col>
                 <Col className="mt-lg-5" md="5">
@@ -285,41 +310,6 @@ export default function LandingPage() {
                       <i className="tim-icons icon-minimal-right text-info" />
                     </a>
                   </div> */}
-                  <Table>
-                    <caption className="text-center">List of NFT & FT</caption>
-                    <thead>
-                      <tr>
-                        <th className="text-center">#</th>
-                        <th>Type</th>
-                        <th>Name</th>
-                        <th className="text-center">Date</th>
-                        <th className="text-right">Value</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td className="text-center">1</td>
-                        <td>Padma Bridge</td>
-                        <td>NFT</td>
-                        <td className="text-center">2018</td>
-                        <td className="text-right"> 99,225</td>
-                      </tr>
-                      <tr>
-                        <td className="text-center">2</td>
-                        <td>Bank Transfer</td>
-                        <td>FT</td>
-                        <td className="text-center">2021</td>
-                        <td className="text-right">5,201</td>
-                      </tr>
-                      <tr>
-                        <td className="text-center">3</td>
-                        <td>Land Deed(Dhanmondi)</td>
-                        <td>NFT</td>
-                        <td className="text-center">2015</td>
-                        <td className="text-right">22043</td>
-                      </tr>
-                    </tbody>
-                  </Table>
                 </Col>
               </Row>
             </Container>

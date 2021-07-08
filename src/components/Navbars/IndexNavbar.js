@@ -39,7 +39,7 @@ import {
 import { Web3Context } from "Context/Web3Context";
 
 export default function IndexNavbar() {
-  const {web3Context, setWeb3Context} = useContext(Web3Context)
+  const {setWeb3Context} = useContext(Web3Context)
   const [account, setAccount] = useState(null)
   const [balance, setBalance] = useState(null)
   const [collapseOpen, setCollapseOpen] = React.useState(false);
@@ -49,11 +49,14 @@ export default function IndexNavbar() {
   ethereum.on('accountsChanged', (accounts) => {
     console.log(accounts)
     setAccount(accounts[0])
+    web3 = new Web3(ethereum)
+    setWeb3Context(web3)
   })
   React.useEffect(() => {
     window.addEventListener("scroll", changeColor);
     return function cleanup() {
       window.removeEventListener("scroll", changeColor);
+      
     };
   },[]);
   const connectMetamask = () => {
@@ -103,7 +106,7 @@ export default function IndexNavbar() {
             Decentralized Government
           </NavbarBrand>
           <UncontrolledTooltip placement="bottom" target="navbar-brand">
-            Designed and Coded by Creative Tim
+            Designed and Coded by Nafiz Zaman
           </UncontrolledTooltip>
           <button
             aria-expanded={collapseOpen}
