@@ -1,75 +1,58 @@
-/*!
-
-=========================================================
-* BLK Design System React - v1.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/blk-design-system-react
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/blk-design-system-react/blob/main/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
-// import classnames from "classnames";
+import classnames from "classnames";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
 
 // reactstrap components
 import {
-  // Button,
+  Button,
   Card,
   CardHeader,
   CardBody,
-  // Label,
-  // FormGroup,
-  // Form,
-  // Input,
-  // FormText,
+  Label,
+  FormGroup,
+  Form,
+  Input,
+  FormText,
   NavItem,
-  // NavLink,
+  NavLink,
   Nav,
-  // Table,
+  Table,
   TabContent,
   TabPane,
   Container,
   Row,
   Col,
-  // UncontrolledTooltip,
-  // UncontrolledCarousel,
+  UncontrolledTooltip,
+  UncontrolledCarousel,
 } from "reactstrap";
 
 // core components
-// import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
-// import Footer from "components/Footer/Footer.js";
+import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
+import Footer from "components/Footer/Footer.js";
 import IndexNavbar from "components/Navbars/IndexNavbar";
 
-// const carouselItems = [
-//   {
-//     src: require("assets/img/denys.jpg").default,
-//     altText: "Slide 1",
-//     caption: "Big City Life, United States",
-//   },
-//   {
-//     src: require("assets/img/fabien-bazanegue.jpg").default,
-//     altText: "Slide 2",
-//     caption: "Somewhere Beyond, United States",
-//   },
-//   {
-//     src: require("assets/img/mark-finn.jpg").default,
-//     altText: "Slide 3",
-//     caption: "Stocks, United States",
-//   },
-// ];
+const carouselItems = [
+  {
+    src: require("assets/img/denys.jpg").default,
+    altText: "Slide 1",
+    caption: "Big City Life, United States",
+  },
+  {
+    src: require("assets/img/fabien-bazanegue.jpg").default,
+    altText: "Slide 2",
+    caption: "Somewhere Beyond, United States",
+  },
+  {
+    src: require("assets/img/mark-finn.jpg").default,
+    altText: "Slide 3",
+    caption: "Stocks, United States",
+  },
+];
 
 let ps = null;
 
-export default function ProfilePage() {
+export default function DeedPage() {
   const [tabs, setTabs] = React.useState(1);
   React.useEffect(() => {
     if (navigator.platform.indexOf("Win") > -1) {
@@ -80,7 +63,7 @@ export default function ProfilePage() {
         ps = new PerfectScrollbar(tables[i]);
       }
     }
-    document.body.classList.toggle("profile-page");
+    document.body.classList.toggle("deed-page");
     // Specify how to clean up after this effect:
     return function cleanup() {
       if (navigator.platform.indexOf("Win") > -1) {
@@ -88,7 +71,7 @@ export default function ProfilePage() {
         document.documentElement.className += " perfect-scrollbar-off";
         document.documentElement.classList.remove("perfect-scrollbar-on");
       }
-      document.body.classList.toggle("profile-page");
+      document.body.classList.toggle("deed-page");
     };
   }, []);
   return (
@@ -109,15 +92,15 @@ export default function ProfilePage() {
           <Container className="align-items-center">
             <Row>
               <Col lg="6" md="6">
-                {/* <h1 className="profile-title text-left">Nafiz Zaman</h1> */}
+                <h1 className="profile-title text-left">Nafiz Zaman</h1>
                 <h5 className="text-on-back">NID</h5>
-                {/* <p className="profile-description">
+                <p className="profile-description">
                   Address: House 10
                   Road 5, Dhanmondi
                   Dhaka -1205<br></br>
                   Blood Group : A+
-                </p> */}
-                {/* <div className="btn-wrapper profile pt-3">
+                </p>
+                <div className="btn-wrapper profile pt-3">
                   <Button
                     className="btn-icon btn-round"
                     color="twitter"
@@ -154,7 +137,7 @@ export default function ProfilePage() {
                   <UncontrolledTooltip delay={0} target="tooltip951161185">
                     Follow us
                   </UncontrolledTooltip>
-                </div> */}
+                </div>
               </Col>
               <Col className="ml-auto mr-auto" lg="4" md="6">
                 <Card className="card-coin card-plain">
@@ -172,7 +155,7 @@ export default function ProfilePage() {
                       tabs
                     >
                       <NavItem>
-                        {/* <NavLink
+                        <NavLink
                           className={classnames({
                             active: tabs === 1,
                           })}
@@ -183,10 +166,10 @@ export default function ProfilePage() {
                           href="#pablo"
                         >
                           Information
-                        </NavLink> */}
+                        </NavLink>
                       </NavItem>
                       <NavItem>
-                        {/* <NavLink
+                        <NavLink
                           className={classnames({
                             active: tabs === 2,
                           })}
@@ -197,10 +180,10 @@ export default function ProfilePage() {
                           href="#pablo"
                         >
                           Send
-                        </NavLink> */}
+                        </NavLink>
                       </NavItem>
                       <NavItem>
-                        {/* <NavLink
+                        <NavLink
                           className={classnames({
                             active: tabs === 3,
                           })}
@@ -211,7 +194,7 @@ export default function ProfilePage() {
                           href="#pablo"
                         >
                           News
-                        </NavLink> */}
+                        </NavLink>
                       </NavItem>
                     </Nav>
                     <TabContent
@@ -219,7 +202,7 @@ export default function ProfilePage() {
                       activeTab={"tab" + tabs}
                     >
                       <TabPane tabId="tab1">
-                        {/* <Table className="tablesorter" responsive>
+                        <Table className="tablesorter" responsive>
                           <thead className="text-primary">
                             <tr>
                               <th className="header">COIN</th>
@@ -244,7 +227,7 @@ export default function ProfilePage() {
                               <td>18,354.96 USD</td>
                             </tr>
                           </tbody>
-                        </Table> */}
+                        </Table>
                         <p className="profile-description ">
                           Name: A K M Nafiz Zaman<br></br>
                           Father : A K M Khalequzzaman<br></br>
@@ -254,7 +237,7 @@ export default function ProfilePage() {
                           ID No: 201241343
                         </p>
                       </TabPane>
-                      {/* <TabPane tabId="tab2">
+                      <TabPane tabId="tab2">
                         <Row>
                           <Label sm="3">Pay to</Label>
                           <Col sm="9">
@@ -284,8 +267,8 @@ export default function ProfilePage() {
                         >
                           <i className="tim-icons icon-send" />
                         </Button>
-                      </TabPane> */}
-                      {/* <TabPane tabId="tab3">
+                      </TabPane>
+                      <TabPane tabId="tab3">
                         <Table className="tablesorter" responsive>
                           <thead className="text-primary">
                             <tr>
@@ -304,7 +287,7 @@ export default function ProfilePage() {
                             </tr>
                           </tbody>
                         </Table>
-                      </TabPane> */}
+                      </TabPane>
                     </TabContent>
                   </CardBody>
                 </Card>
@@ -313,7 +296,7 @@ export default function ProfilePage() {
           </Container>
         </div>
         <div className="section">
-          {/* <Container>
+          <Container>
             <Row className="justify-content-between">
               <Col md="6">
                 <Row className="justify-content-between align-items-center">
@@ -350,9 +333,9 @@ export default function ProfilePage() {
                 </div>
               </Col>
             </Row>
-          </Container> */}
+          </Container>
         </div>
-        {/* <section className="section">
+        <section className="section">
           <Container>
             <Row>
               <Col md="6">
@@ -449,8 +432,8 @@ export default function ProfilePage() {
               </Col>
             </Row>
           </Container>
-        </section> */}
-        {/* <Footer /> */}
+        </section>
+        <Footer />
       </div>
     </>
   );

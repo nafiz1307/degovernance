@@ -15,12 +15,12 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, {useContext, useRef, useState} from "react";
+import React, {useContext,  useState} from "react";
 // react plugin used to create charts
 // import { Line } from "react-chartjs-2";
 // reactstrap components
 import {
-  // Button,
+  Button,
   Card,
   // CardHeader,
   CardBody,
@@ -46,7 +46,7 @@ import { Web3Context } from "Context/Web3Context";
 
 export default function LandingPage() {
   const [account, setAccount] = useState(null)
-  const {web3Context, setWeb3Context} = useContext(Web3Context)
+  const {web3Context} = useContext(Web3Context)
   React.useEffect(() => {
     // web3.eth.getAccounts().then(accounts => setAccount(accounts[0]))
     document.body.classList.toggle("landing-page");
@@ -224,10 +224,16 @@ export default function LandingPage() {
                         <td>NFT</td>
                         <td className="text-center">2015</td>
                         <td className="text-right">22043</td>
+                        <td><Button className="btn-simple" color="primary">
+                      Show Balance
+                    </Button></td>
                         
                       </tr>
                     </tbody>
                   </Table>
+                    </Col>
+                    <Col className="px-2 py-2" lg="4" sm="12">
+                    
                     </Col>
                   </Row>
               <Row className="row-grid justify-content-between">
