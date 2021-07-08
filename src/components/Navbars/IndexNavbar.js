@@ -49,11 +49,14 @@ export default function IndexNavbar() {
   ethereum.on('accountsChanged', (accounts) => {
     console.log(accounts)
     setAccount(accounts[0])
+    web3 = new Web3(ethereum)
+    setWeb3Context(web3)
   })
   React.useEffect(() => {
     window.addEventListener("scroll", changeColor);
     return function cleanup() {
       window.removeEventListener("scroll", changeColor);
+      
     };
   },[]);
   const connectMetamask = () => {

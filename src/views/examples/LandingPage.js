@@ -37,14 +37,23 @@ import {
 // core components
 // import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import IndexNavbar from "components/Navbars/IndexNavbar";
-import { Web3Context } from "Context/Web3Context";
 // import Footer from "components/Footer/Footer.js";
 
 // import bigChartData from "variables/charts.js";
-// import Web3Context
 
+
+// import Web3Context for the web3 instance
+import { Web3Context } from "Context/Web3Context";
+// import axios for http requests
+import axios from "axios";
+import { apiEndpoint } from "config";
+import { Button } from "reactstrap";
 
 export default function LandingPage() {
+  const [fungibleTokenContractAbi, setFungibleContractAbi] = useState()
+  const [tokenAddress, setTokenAddress] = useState()
+  const [balance, setBalance] = useState(0)
+  const [tokens, setTokens] = useState([])
   const [account, setAccount] = useState(null)
   const {web3Context, setWeb3Context} = useContext(Web3Context)
   React.useEffect(() => {
@@ -59,8 +68,29 @@ export default function LandingPage() {
     if(web3Context.eth){
       let web3 = web3Context
       web3.eth.getAccounts().then(accounts => setAccount(accounts[0]))
+      
     }
   },[web3Context])
+
+  React.useEffect(() => {
+    axios.get(`${apiEndpoint}/token`).then(response =>{
+      setTokens(response.data)
+      console.log(response.data)
+    })
+    .catch(console.log)
+  },[])
+
+
+  const getTokenBalance = (e) => {
+    let {abi, address} = JSON.parse(e.target.value)
+    if(web3Context.eth){
+      let web3 = web3Context
+      let contractInstance = new web3.eth.Contract(abi, address)
+      contractInstance.methods.balanceOf(account).call({from: account}, (error, result) => {
+        setBalance(result)
+      })
+    }
+  }
   return (
     <>
       {/* <ExamplesNavbar /> */}
@@ -205,15 +235,59 @@ export default function LandingPage() {
                             </Col>
                             <Col md="8" xs="7">
                               <div className="numbers">
+<<<<<<< Updated upstream
                                 <CardTitle tag="p">3,653</CardTitle>
                                 <p />
                                 <p className="card-category">Commits</p>
+=======
+                              <p className="card-category" >Connected Account</p>
+                              <CardTitle tag="p">{account}</CardTitle><br></br>
+                                <p />
+                                <p className="card-category" >Available Balance : {balance}</p>
+>>>>>>> Stashed changes
                               </div>
                             </Col>
                           </Row>
                         </CardBody>
                       </Card>
+<<<<<<< Updated upstream
                     </Col> */}
+=======
+                    </Col>
+                    <Col className="px-2 py-2" lg="4" sm="12">
+                      <Table>
+                    <caption className="text-center">List of NFT & FT</caption>
+                    <thead>
+                      <tr>
+                        <th className="text-center">#</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th className="text-center">Address</th>
+                        <th className="text-center">Button</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {
+                        tokens.map((token, index) =><tr>
+                          <td className="text-center">{index +1}</td>
+                          <td>{token.name}</td>
+                          <td>{token.tokenType}</td>
+                          <td className="text-center">{token.address}</td>
+                          <td> <Button
+                className="nav-link d-none d-lg-block"
+                color="primary"
+                target="_blank"
+                value = {JSON.stringify(token)}
+                onClick = {getTokenBalance}
+              >
+               Get Balance
+              </Button></td>
+                        </tr>)
+                      }
+                    </tbody>
+                  </Table>
+                    </Col>
+>>>>>>> Stashed changes
                   </Row>
                   <Row>
                     <Col className="px-2 py-2" lg="8" sm="12">
