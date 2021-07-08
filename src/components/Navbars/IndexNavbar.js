@@ -41,7 +41,7 @@ import { Web3Context } from "Context/Web3Context";
 export default function IndexNavbar() {
   const {setWeb3Context} = useContext(Web3Context)
   const [account, setAccount] = useState(null)
-  const [ setBalance] = useState(null)
+  const [balance, setBalance] = useState(null)
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   const [collapseOut, setCollapseOut] = React.useState("");
   const [color, setColor] = React.useState("navbar-transparent");
