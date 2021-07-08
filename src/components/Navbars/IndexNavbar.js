@@ -39,9 +39,9 @@ import {
 import { Web3Context } from "Context/Web3Context";
 
 export default function IndexNavbar() {
-  const {web3Context, setWeb3Context} = useContext(Web3Context)
+  const {setWeb3Context} = useContext(Web3Context)
   const [account, setAccount] = useState(null)
-  const [balance, setBalance] = useState(null)
+  const [ setBalance] = useState(null)
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   const [collapseOut, setCollapseOut] = React.useState("");
   const [color, setColor] = React.useState("navbar-transparent");
@@ -106,7 +106,7 @@ export default function IndexNavbar() {
             Decentralized Government
           </NavbarBrand>
           <UncontrolledTooltip placement="bottom" target="navbar-brand">
-            Designed and Coded by Creative Tim
+            Designed and Coded by Nafiz Zaman
           </UncontrolledTooltip>
           <button
             aria-expanded={collapseOpen}

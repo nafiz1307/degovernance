@@ -25,8 +25,9 @@ import "assets/demo/demo.css";
 
 import Index from "views/Index.js";
 import LandingPage from "views/examples/LandingPage.js";
-import RegisterPage from "views/examples/RegisterPage.js";
+// import Deedpage from "views/examples/DeedPage.js";
 import ProfilePage from "views/examples/ProfilePage.js";
+import DeedPage from "views/examples/DeedPage";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -37,12 +38,12 @@ ReactDOM.render(
         render={(props) => <LandingPage {...props} />}
       />
       <Route
-        path="/register-page"
-        render={(props) => <RegisterPage {...props} />}
-      />
-      <Route
         path="/profile-page"
         render={(props) => <ProfilePage {...props} />}
+      />
+      <Route
+        path="/deed-page"
+        render={(props) => <DeedPage {...props} />}
       />
       <Redirect from="/" to="/components" />
     </Switch>

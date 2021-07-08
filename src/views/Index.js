@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, {useRef, useState} from "react";
+import React, { useState} from "react";
 
 // core components
 import IndexNavbar from "components/Navbars/IndexNavbar.js";

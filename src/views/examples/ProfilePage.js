@@ -16,54 +16,56 @@
 
 */
 import React from "react";
-import classnames from "classnames";
+// import classnames from "classnames";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
+
 // reactstrap components
 import {
-  Button,
+  // Button,
   Card,
   CardHeader,
   CardBody,
-  Label,
-  FormGroup,
-  Form,
-  Input,
-  FormText,
+  // Label,
+  // FormGroup,
+  // Form,
+  // Input,
+  // FormText,
   NavItem,
-  NavLink,
+  // NavLink,
   Nav,
-  Table,
+  // Table,
   TabContent,
   TabPane,
   Container,
   Row,
   Col,
-  UncontrolledTooltip,
-  UncontrolledCarousel,
+  // UncontrolledTooltip,
+  // UncontrolledCarousel,
 } from "reactstrap";
 
 // core components
-import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
-import Footer from "components/Footer/Footer.js";
+// import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
+// import Footer from "components/Footer/Footer.js";
+import IndexNavbar from "components/Navbars/IndexNavbar";
 
-const carouselItems = [
-  {
-    src: require("assets/img/denys.jpg").default,
-    altText: "Slide 1",
-    caption: "Big City Life, United States",
-  },
-  {
-    src: require("assets/img/fabien-bazanegue.jpg").default,
-    altText: "Slide 2",
-    caption: "Somewhere Beyond, United States",
-  },
-  {
-    src: require("assets/img/mark-finn.jpg").default,
-    altText: "Slide 3",
-    caption: "Stocks, United States",
-  },
-];
+// const carouselItems = [
+//   {
+//     src: require("assets/img/denys.jpg").default,
+//     altText: "Slide 1",
+//     caption: "Big City Life, United States",
+//   },
+//   {
+//     src: require("assets/img/fabien-bazanegue.jpg").default,
+//     altText: "Slide 2",
+//     caption: "Somewhere Beyond, United States",
+//   },
+//   {
+//     src: require("assets/img/mark-finn.jpg").default,
+//     altText: "Slide 3",
+//     caption: "Stocks, United States",
+//   },
+// ];
 
 let ps = null;
 
@@ -88,10 +90,10 @@ export default function ProfilePage() {
       }
       document.body.classList.toggle("profile-page");
     };
-  },[]);
+  }, []);
   return (
     <>
-      <ExamplesNavbar />
+      <IndexNavbar></IndexNavbar>
       <div className="wrapper">
         <div className="page-header">
           <img
@@ -107,15 +109,15 @@ export default function ProfilePage() {
           <Container className="align-items-center">
             <Row>
               <Col lg="6" md="6">
-                <h1 className="profile-title text-left">Mike Scheinder</h1>
-                <h5 className="text-on-back">01</h5>
-                <p className="profile-description">
-                  Offices parties lasting outward nothing age few resolve.
-                  Impression to discretion understood to we interested he
-                  excellence. Him remarkably use projection collecting. Going
-                  about eat forty world has round miles.
-                </p>
-                <div className="btn-wrapper profile pt-3">
+                {/* <h1 className="profile-title text-left">Nafiz Zaman</h1> */}
+                <h5 className="text-on-back">NID</h5>
+                {/* <p className="profile-description">
+                  Address: House 10
+                  Road 5, Dhanmondi
+                  Dhaka -1205<br></br>
+                  Blood Group : A+
+                </p> */}
+                {/* <div className="btn-wrapper profile pt-3">
                   <Button
                     className="btn-icon btn-round"
                     color="twitter"
@@ -152,7 +154,7 @@ export default function ProfilePage() {
                   <UncontrolledTooltip delay={0} target="tooltip951161185">
                     Follow us
                   </UncontrolledTooltip>
-                </div>
+                </div> */}
               </Col>
               <Col className="ml-auto mr-auto" lg="4" md="6">
                 <Card className="card-coin card-plain">
@@ -160,9 +162,9 @@ export default function ProfilePage() {
                     <img
                       alt="..."
                       className="img-center img-fluid rounded-circle"
-                      src={require("assets/img/mike.jpg").default}
+                      src={require("assets/img/avatar1.png").default}
                     />
-                    <h4 className="title">Transactions</h4>
+                    <h4 className="title">Card</h4>
                   </CardHeader>
                   <CardBody>
                     <Nav
@@ -170,7 +172,7 @@ export default function ProfilePage() {
                       tabs
                     >
                       <NavItem>
-                        <NavLink
+                        {/* <NavLink
                           className={classnames({
                             active: tabs === 1,
                           })}
@@ -180,11 +182,11 @@ export default function ProfilePage() {
                           }}
                           href="#pablo"
                         >
-                          Wallet
-                        </NavLink>
+                          Information
+                        </NavLink> */}
                       </NavItem>
                       <NavItem>
-                        <NavLink
+                        {/* <NavLink
                           className={classnames({
                             active: tabs === 2,
                           })}
@@ -195,10 +197,10 @@ export default function ProfilePage() {
                           href="#pablo"
                         >
                           Send
-                        </NavLink>
+                        </NavLink> */}
                       </NavItem>
                       <NavItem>
-                        <NavLink
+                        {/* <NavLink
                           className={classnames({
                             active: tabs === 3,
                           })}
@@ -209,7 +211,7 @@ export default function ProfilePage() {
                           href="#pablo"
                         >
                           News
-                        </NavLink>
+                        </NavLink> */}
                       </NavItem>
                     </Nav>
                     <TabContent
@@ -217,7 +219,7 @@ export default function ProfilePage() {
                       activeTab={"tab" + tabs}
                     >
                       <TabPane tabId="tab1">
-                        <Table className="tablesorter" responsive>
+                        {/* <Table className="tablesorter" responsive>
                           <thead className="text-primary">
                             <tr>
                               <th className="header">COIN</th>
@@ -242,9 +244,17 @@ export default function ProfilePage() {
                               <td>18,354.96 USD</td>
                             </tr>
                           </tbody>
-                        </Table>
+                        </Table> */}
+                        <p className="profile-description ">
+                          Name: A K M Nafiz Zaman<br></br>
+                          Father : A K M Khalequzzaman<br></br>
+                          Mother : Sazeda Zaman<br></br>
+                          Date of Birth : 13/07/2000<br></br>
+                          Blood Group : A+<br></br>
+                          ID No: 201241343
+                        </p>
                       </TabPane>
-                      <TabPane tabId="tab2">
+                      {/* <TabPane tabId="tab2">
                         <Row>
                           <Label sm="3">Pay to</Label>
                           <Col sm="9">
@@ -274,8 +284,8 @@ export default function ProfilePage() {
                         >
                           <i className="tim-icons icon-send" />
                         </Button>
-                      </TabPane>
-                      <TabPane tabId="tab3">
+                      </TabPane> */}
+                      {/* <TabPane tabId="tab3">
                         <Table className="tablesorter" responsive>
                           <thead className="text-primary">
                             <tr>
@@ -294,7 +304,7 @@ export default function ProfilePage() {
                             </tr>
                           </tbody>
                         </Table>
-                      </TabPane>
+                      </TabPane> */}
                     </TabContent>
                   </CardBody>
                 </Card>
@@ -303,7 +313,7 @@ export default function ProfilePage() {
           </Container>
         </div>
         <div className="section">
-          <Container>
+          {/* <Container>
             <Row className="justify-content-between">
               <Col md="6">
                 <Row className="justify-content-between align-items-center">
@@ -340,9 +350,9 @@ export default function ProfilePage() {
                 </div>
               </Col>
             </Row>
-          </Container>
+          </Container> */}
         </div>
-        <section className="section">
+        {/* <section className="section">
           <Container>
             <Row>
               <Col md="6">
@@ -439,8 +449,8 @@ export default function ProfilePage() {
               </Col>
             </Row>
           </Container>
-        </section>
-        <Footer />
+        </section> */}
+        {/* <Footer /> */}
       </div>
     </>
   );
