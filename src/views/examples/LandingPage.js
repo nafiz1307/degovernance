@@ -47,7 +47,6 @@ import { Web3Context } from "Context/Web3Context";
 // import axios for http requests
 import axios from "axios";
 import { apiEndpoint } from "config";
-import { Button } from "reactstrap";
 
 export default function LandingPage() {
   const [fungibleTokenContractAbi, setFungibleContractAbi] = useState()
@@ -212,10 +211,6 @@ export default function LandingPage() {
                             </Col>
                             <Col md="8" xs="7">
                               <div className="numbers">
-                                <CardTitle tag="p">3,653</CardTitle>
-                                <p />
-                                <p className="card-category">Commits</p>
-
                               <p className="card-category" >Connected Account</p>
                               <CardTitle tag="p">{account}</CardTitle><br></br>
                                 <p />
@@ -227,52 +222,12 @@ export default function LandingPage() {
                       </Card>
 
                     </Col>
-                    <Col className="px-2 py-2" lg="4" sm="12">
-                      <Table>
-                    <caption className="text-center">List of NFT & FT</caption>
-                    <thead>
-                      <tr>
-                        <th className="text-center">#</th>
-
-                        <th>Type</th>
-                        <th>Name</th>
-                        <th className="text-center">Date</th>
-                        <th className="text-right">Value</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td className="text-center">1</td>
-                        <td>Padma Bridge</td>
-                        <td>NFT</td>
-                        <td className="text-center">2018</td>
-                        <td className="text-right"> 99,225</td>
-                      </tr>
-                      <tr>
-                        <td className="text-center">2</td>
-                        <td>Bank Transfer</td>
-                        <td>FT</td>
-                        <td className="text-center">2021</td>
-                        <td className="text-right">5,201</td>
-                      </tr>
-                      <tr>
-                        <td className="text-center">3</td>
-                        <td>Land Deed(Dhanmondi)</td>
-                        <td>NFT</td>
-                        <td className="text-center">2015</td>
-                        <td className="text-right">22043</td>
-                        <td><Button className="btn-simple" color="primary">
-                      Show Balance
-                    </Button></td>
-                        
-                      </tr>
-                    </tbody>
-                  </Table>
-                    </Col>
+                   
                     <Col className="px-2 py-2" lg="4" sm="12">
                     
-                    </Col>
-
+                    <Table>
+                      <thead>
+                        <tr>
                         <th>Name</th>
                         <th>Type</th>
                         <th className="text-center">Address</th>
