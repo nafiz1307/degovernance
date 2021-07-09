@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, { useContext } from "react";
 // import classnames from "classnames";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
@@ -48,6 +48,7 @@ import {
 // import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 // import Footer from "components/Footer/Footer.js";
 import IndexNavbar from "components/Navbars/IndexNavbar";
+import { NftContext } from "Context/NftContext";
 
 // const carouselItems = [
 //   {
@@ -71,6 +72,8 @@ let ps = null;
 
 export default function ProfilePage() {
   const [tabs, setTabs] = React.useState(1);
+  const {nftContext, setNftContext} = useContext(NftContext)
+  let{name, fatherName, motherName, dateOfBirth, bloodGroup, tokenId} = nftContext.data
   React.useEffect(() => {
     if (navigator.platform.indexOf("Win") > -1) {
       document.documentElement.className += " perfect-scrollbar-on";
@@ -84,7 +87,9 @@ export default function ProfilePage() {
     // Specify how to clean up after this effect:
     return function cleanup() {
       if (navigator.platform.indexOf("Win") > -1) {
-        ps.destroy();
+        if(ps){
+          ps.destroy();
+        }
         document.documentElement.className += " perfect-scrollbar-off";
         document.documentElement.classList.remove("perfect-scrollbar-on");
       }
@@ -246,12 +251,12 @@ export default function ProfilePage() {
                           </tbody>
                         </Table> */}
                         <p className="profile-description ">
-                          Name: A K M Nafiz Zaman<br></br>
-                          Father : A K M Khalequzzaman<br></br>
-                          Mother : Sazeda Zaman<br></br>
-                          Date of Birth : 13/07/2000<br></br>
-                          Blood Group : A+<br></br>
-                          ID No: 201241343
+                          Name: {name}<br></br>
+                          Father : {fatherName}<br></br>
+                          Mother : {motherName}<br></br>
+                          Date of Birth : {dateOfBirth}<br></br>
+                          Blood Group : {bloodGroup}<br></br>
+                          ID No: {tokenId}
                         </p>
                       </TabPane>
                       {/* <TabPane tabId="tab2">

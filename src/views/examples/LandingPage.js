@@ -47,12 +47,18 @@ import { Web3Context } from "Context/Web3Context";
 // import axios for http requests
 import axios from "axios";
 import { apiEndpoint } from "config";
+import { NftContext } from "Context/NftContext";
+import { useHistory } from "react-router-dom";
 
 export default function LandingPage() {
+  const history = useHistory()
   const [fungibleTokenContractAbi, setFungibleContractAbi] = useState()
   const [tokenAddress, setTokenAddress] = useState()
   const [balance, setBalance] = useState(0)
   const [tokens, setTokens] = useState([])
+  const [nfts, setNfts] = useState([])
+  const [nft, setNft] = useState({})
+  const {nftContext, setNftContext} = useContext(NftContext)
   const [account, setAccount] = useState(null)
   const {web3Context} = useContext(Web3Context)
   React.useEffect(() => {
@@ -80,13 +86,42 @@ export default function LandingPage() {
   },[])
 
 
-  const getTokenBalance = (e) => {
+  const getFungibleTokenBalance = (e) => {
+    e.preventDefault()
     let {abi, address} = JSON.parse(e.target.value)
     if(web3Context.eth){
       let web3 = web3Context
       let contractInstance = new web3.eth.Contract(abi, address)
       contractInstance.methods.balanceOf(account).call({from: account}, (error, result) => {
         setBalance(result)
+      })
+    }
+  }
+  const getNfts = (e) => {
+    e.preventDefault()
+    setNft(JSON.parse(e.target.value))
+    let {name} =  JSON.parse(e.target.value)
+    axios.get(`${apiEndpoint}/token/nft/${account}/${name}`).then(response => {
+      setNfts(response.data)
+      console.log(response.data)
+    })
+    .catch(console.log)
+  }
+  const onDetailsButtonClick = (e) => {
+    let {tokenId} = JSON.parse(e.target.value)
+    e.preventDefault()
+    if(web3Context.eth){
+      let web3 = web3Context
+      let contractInstance = new web3.eth.Contract(nft.abi, nft.address)
+      contractInstance.methods.tokenData(tokenId).call({from: account}, (error, result) => {
+        if(error){
+          console.log(error)
+        }
+        else {
+          let{name, fatherName, motherName, dateOfBirth, bloodGroup} = result
+          setNftContext({...nft, data: {name, fatherName, motherName, dateOfBirth, bloodGroup, tokenId}})
+          history.push('/profile-page')
+        }
       })
     }
   }
@@ -228,6 +263,7 @@ export default function LandingPage() {
                     <Table>
                       <thead>
                         <tr>
+                        <th>#</th>
                         <th>Name</th>
                         <th>Type</th>
                         <th className="text-center">Address</th>
@@ -241,15 +277,23 @@ export default function LandingPage() {
                           <td>{token.name}</td>
                           <td>{token.tokenType}</td>
                           <td className="text-center">{token.address}</td>
-                          <td> <Button
+                          <td> {token.tokenType ==='FT' &&<Button
                 className="nav-link d-none d-lg-block"
                 color="primary"
                 target="_blank"
                 value = {JSON.stringify(token)}
-                onClick = {getTokenBalance}
+                onClick = {getFungibleTokenBalance}
               >
                Get Balance
-              </Button></td>
+              </Button>}{token.tokenType ==='NFT' &&<Button
+                className="nav-link d-none d-lg-block"
+                color="primary"
+                target="_blank"
+                value = {JSON.stringify(token)}
+                onClick = {getNfts}
+              >
+               Get Tokens
+              </Button>}</td>
                         </tr>)
                       }
                     </tbody>
@@ -396,34 +440,29 @@ export default function LandingPage() {
                     <thead>
                       <tr>
                         <th className="text-center">#</th>
-                        <th>Type</th>
                         <th>Name</th>
+                        <th>Token Id</th>
                         <th className="text-center">Date</th>
-                        <th className="text-right">Value</th>
+                        <th>Button</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td className="text-center">1</td>
-                        <td>Padma Bridge</td>
-                        <td>NFT</td>
-                        <td className="text-center">2018</td>
-                        <td className="text-right"> 99,225</td>
-                      </tr>
-                      <tr>
-                        <td className="text-center">2</td>
-                        <td>Bank Transfer</td>
-                        <td>FT</td>
-                        <td className="text-center">2021</td>
-                        <td className="text-right">5,201</td>
-                      </tr>
-                      <tr>
-                        <td className="text-center">3</td>
-                        <td>Land Deed(Dhanmondi)</td>
-                        <td>NFT</td>
-                        <td className="text-center">2015</td>
-                        <td className="text-right">22043</td>
-                      </tr>
+                      {
+                        nfts.map((nft, index) => <tr>
+                          <td className="text-center">{index +1}</td>
+                          <td>{nft.tokenName}</td>
+                          <td>{nft.tokenId}</td>
+                          <td className="text-center">{nft.date}</td>
+                          <td><Button
+                className="nav-link d-none d-lg-block"
+                color="primary"
+                target="_blank"
+                value = {JSON.stringify(nft)}
+                onClick = {onDetailsButtonClick}
+              >View Details </Button></td>
+                        </tr>)
+                      }
+                      
                     </tbody>
                   </Table>
           </div>

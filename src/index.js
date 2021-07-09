@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React,{useState} from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
@@ -28,25 +28,12 @@ import LandingPage from "views/examples/LandingPage.js";
 // import Deedpage from "views/examples/DeedPage.js";
 import ProfilePage from "views/examples/ProfilePage.js";
 import DeedPage from "views/examples/DeedPage";
+import Routes from "./routes";
+
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Switch>
-      <Route path="/components" render={(props) => <Index {...props} />} />
-      <Route
-        path="/landing-page"
-        render={(props) => <LandingPage {...props} />}
-      />
-      <Route
-        path="/profile-page"
-        render={(props) => <ProfilePage {...props} />}
-      />
-      <Route
-        path="/deed-page"
-        render={(props) => <DeedPage {...props} />}
-      />
-      <Redirect from="/" to="/components" />
-    </Switch>
-  </BrowserRouter>,
+  <Routes>
+    
+  </Routes>,
   document.getElementById("root")
 );

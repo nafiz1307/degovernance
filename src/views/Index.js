@@ -49,7 +49,7 @@ export default function Index() {
   },[]);
   return (
     <>
-      <Web3Context.Provider value = {{web3Context, setWeb3Context}}>
+      
       <IndexNavbar />
       
       <div className="wrapper">
@@ -70,7 +70,7 @@ export default function Index() {
         </div>
         {/* <Footer /> */}
       </div>
-      </Web3Context.Provider>
+      
     </>
   );
 }
