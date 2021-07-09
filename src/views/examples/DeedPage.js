@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import classnames from "classnames";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
@@ -20,11 +20,14 @@ import {
 
 // core components
 import IndexNavbar from "components/Navbars/IndexNavbar";
+import { NftContext } from "Context/NftContext";
 
 let ps = null;
 
 export default function ProfilePage() {
   const [tabs, setTabs] = React.useState(1);
+  const {nftContext, setNftContext} = useContext(NftContext)
+  let {name, location, description, status, tokenId} = nftContext.data
   React.useEffect(() => {
     if (navigator.platform.indexOf("Win") > -1) {
       document.documentElement.className += " perfect-scrollbar-on";
@@ -65,7 +68,7 @@ export default function ProfilePage() {
           <Container className="align-items-center">
             <Row>
               <Col lg="6" md="6">
-                <h1 className="profile-title text-left">Dhaka</h1>
+                
                 <h5 className="text-on-back">Details</h5>
               </Col>
               <Col className="ml-auto mr-auto" lg="4" md="6">
@@ -89,30 +92,22 @@ export default function ProfilePage() {
                           }}
                           href="#pablo"
                         >
-                          Deed
+                          Land Deed
                         </NavLink>
                       </NavItem>
                     </Nav>
+                    <br></br>
                     <TabContent
                       className="tab-subcategories"
                       activeTab={"tab" + tabs}
                     >
                       <TabPane tabId="tab1">
                         <p className="profile-description">
-                          ID:0x2748d<br></br>
-                          <b>Name:</b> Nafiz Zaman<br></br>
-                          <b>Location</b> : 23/c, Jatrabari , Dhaka-1205<br></br>
-                          <b>Description: </b> Lorem ipsum dolor sit amet,
-                          consectetur adipiscing elit, sed do eiusmod tempor
-                          incididunt ut labore et dolore magna aliqua. Libero
-                          nunc consequat interdum varius sit. Posuere ac ut
-                          consequat semper viverra nam libero. Malesuada
-                          bibendum arcu vitae elementum curabitur vitae.
-                          Volutpat blandit aliquam etiam erat velit scelerisque.
-                          Facilisis sed odio morbi quis commodo odio aenean sed
-                          adipiscing. A diam maecenas sed enim ut sem viverra
-                          aliquet.<br></br>
-                          Status: Active
+                          <b>ID: </b>{tokenId}<br></br><br></br>
+                          <b>Name: </b> {name}<br></br><br></br>
+                          <b>Location: </b> {location}<br></br><br></br>
+                          <b>Description: </b> {description}<br></br><br></br>
+                          <b>Status:</b> {status}
                         </p>
                       </TabPane>
                     </TabContent>

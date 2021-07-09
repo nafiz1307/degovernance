@@ -118,9 +118,17 @@ export default function LandingPage() {
           console.log(error)
         }
         else {
-          let{name, fatherName, motherName, dateOfBirth, bloodGroup} = result
-          setNftContext({...nft, data: {name, fatherName, motherName, dateOfBirth, bloodGroup, tokenId}})
-          history.push('/profile-page')
+          if(nft.name === 'Land Deed'){
+            console.log(result)
+            let{name, location, description, status} = result
+            setNftContext({...nft, data: {name, location, description, status, tokenId}})
+            history.push('/deed-page')
+          }
+          else if(nft.name === 'NID'){
+            let{name, fatherName, motherName, dateOfBirth, bloodGroup} = result
+            setNftContext({...nft, data: {name, fatherName, motherName, dateOfBirth, bloodGroup, tokenId}})
+            history.push('/profile-page')
+          }
         }
       })
     }
