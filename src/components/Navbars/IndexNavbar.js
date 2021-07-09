@@ -39,7 +39,7 @@ import {
 import { Web3Context } from "Context/Web3Context";
 
 export default function IndexNavbar() {
-  const {setWeb3Context} = useContext(Web3Context)
+  const {web3Context, setWeb3Context} = useContext(Web3Context)
   const [account, setAccount] = useState(null)
   const [balance, setBalance] = useState(null)
   const [collapseOpen, setCollapseOpen] = React.useState(false);
@@ -213,7 +213,7 @@ export default function IndexNavbar() {
             </UncontrolledDropdown>
             <NavItem>
               {
-                !account && <Button
+                !web3Context.eth && <Button
                 className="nav-link d-none d-lg-block"
                 color="primary"
                 target="_blank"
@@ -223,7 +223,7 @@ export default function IndexNavbar() {
               </Button>
               }
               {
-                account && <Button
+                web3Context.eth && <Button
                 className="nav-link d-none d-lg-block"
                 color="primary"
                 target="_blank"
