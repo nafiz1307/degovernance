@@ -24,7 +24,7 @@ export default function Routes() {
                     path="/deed-page"
                     render={(props) => <DeedPage {...props} />}
                     />
-                    {/* <Redirect from="/" to="/landing-page" /> */}
+                    <Route exact path = "/"><Redirect to="/landing-page" /></Route>
                 </Web3Context.Provider>
             </NftContext.Provider>
             </Switch>
